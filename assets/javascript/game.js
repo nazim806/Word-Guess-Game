@@ -1,10 +1,13 @@
+// Javascript for word guessing game
+
 $(document).ready(function() {
 
-    let possibleCities = [ "singapore", "dubai", "istanbul", "florence", "paris", "madrid", "rome", "seoul", "new york city", 
-                            "shanghai",  "tokyo", "sydney","bamako", "tripoli", "toronto", "beijing", "moscow",
-                            "johannesburg", , "warsaw", "jakarta", "kuala lumpur", "mexico city",
-                            "hong kong", "chicago",  "los angeles", "mumbai", "dhaka", "london", "monte video"]
+    let possibleCities = [ "singapore", "tokyo", "dubai", "istanbul", "florence", "paris", "madrid", "rome", "seoul", "new york city", 
+                            "shanghai",  "sydney","bamako", "tripoli", "toronto", "beijing", "moscow", "johannesburg", 
+                           "warsaw", "jakarta", "kuala lumpur", "mexico city","hong kong", "chicago",
+                              "los angeles", "mumbai", "dhaka", "london", "monte video"]
 
+     //variables declared on top...
     const maxGuess = 10
     let pauseGame = false
 
@@ -17,16 +20,16 @@ $(document).ready(function() {
 
     resetGame()
 
-    // Wait for key press
+    // Wait for any key press
     document.onkeypress = function(event) {
-        // Make sure key pressed is an alpha character
-        if (isAlpha(event.key) && !pauseGame) {
+        // Make sure the key pressed is an alphabet 
+        if (isWord(event.key) && !pauseGame) {
             checkForLetter(event.key.toLowerCase())
         }
     }
 
     // Game Functions
-    // Check if letter is in word & process
+    // Check if typed letter is in word & process
     function checkForLetter(letter) {
         let foundLetter = false
         let correctSound = document.createElement("audio")
@@ -34,7 +37,7 @@ $(document).ready(function() {
         correctSound.setAttribute("src", "assets/audio/tibetan-bell.mp3")
         incorrectSound.setAttribute("src","assets/audio/radio-tune.mp3")
 
-        // Search string for letter
+        // Search a string for letter
         for (let i=0, j= wordToMatch.length; i<j; i++) {
             if (letter === wordToMatch[i]) {
                 guessingWord[i] = letter
@@ -57,13 +60,13 @@ $(document).ready(function() {
             incorrectSound.play()
             // Check if inccorrect guess is already on the list
             if (!guessedLetters.includes(letter)) {
-                // Add incorrect letter to guessed letter list
+                // Addition of incorrect letter to guessed letter list
                 guessedLetters.push(letter)
                 // Decrement the number of remaining guesses
                 numGuess--
             }
             if (numGuess === 0) {
-                // Display word before reseting game
+                // Display correct word before reseting game
                 loses++
                 guessingWord = wordToMatch.split()
                 pauseGame = true
@@ -75,7 +78,7 @@ $(document).ready(function() {
 
     }
     // Check in keypressed is between A-Z or a-z
-    function isAlpha (ch){
+    function isWord (ch){
         return /^[A-Z]$/i.test(ch);
     }
 
@@ -83,7 +86,7 @@ $(document).ready(function() {
         numGuess = maxGuess
         pauseGame = false
 
-        // Get a new word
+        // Get a new word from the array
         wordToMatch = possibleCities[Math.floor(Math.random() * possibleCities.length)].toLowerCase()
         console.log(wordToMatch)
 
@@ -93,7 +96,7 @@ $(document).ready(function() {
 
         // Reset the guessed word
         for (let i=0, j=wordToMatch.length; i < j; i++){
-            // Put a space instead of an underscore between multi word "words"
+            // Put space instead of an underscore between multi word "words"
             if (wordToMatch[i] === " ") {
                 guessingWord.push(" ")
             } else {
@@ -101,7 +104,7 @@ $(document).ready(function() {
             }
         }
 
-        // Update the Display
+        // Update Display
         updateDisplay()
     }
 
