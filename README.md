@@ -10,8 +10,11 @@ https://nazim806.github.io/Word-Guess-Game/
  4. If you run out of guesses, you Lose the round
 
 **Tips:**
-   -- The [Guesses Remaining] countdown only goes down if you guess the wrong letter
-   -- check to see the wrong guesses you already made at the bottom to narrow down your choices
+
+   The [Guesses Remaining] countdown only goes down if you guess the wrong letter.
+   
+   
+   Check to see the wrong guesses you already made at the bottom to narrow down your choices.
    
 **Tools/Languages Used:**
 
