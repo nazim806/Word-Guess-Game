@@ -14,6 +14,11 @@ https://nazim806.github.io/Word-Guess-Game/
    -- check to see the wrong guesses you already made at the bottom to narrow down your choices
    
 **Tools/Languages Used:**
-    -- Javascript 
-    -- HTML/CSS 
-    -- GoogleFonts
+
+    HTML5
+    
+    CSS 
+    
+    Javascript 
+    
+    GoogleFonts
